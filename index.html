@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Valentine's Day! 💖</title>
+    <title>CLICK ME</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
@@ -178,11 +178,6 @@
 
     <!-- Splash Screen -->
     <div id="splash" class="fixed inset-0 bg-[#232121] z-[200] flex flex-col items-center justify-center gap-6">
-        <div id="name-input-container" class="hidden flex flex-col items-center gap-4">
-            <label class="text-[10px] text-pink-300">WHO IS OPENING THIS?</label>
-            <input type="text" id="user-name" placeholder="TYPE NAME..." 
-                class="bg-black border-2 border-pink-500 text-pink-300 p-3 text-center outline-none focus:shadow-[0_0_15px_#ff8da1] font-['Press_Start_2P'] text-[12px]">
-        </div>
         <button class="btn-retro text-2xl animate-pulse" onclick="startApp()">CLICK ME</button>
     </div>
 
@@ -222,21 +217,19 @@
         const urlParams = new URLSearchParams(window.location.search);
         const urlName = urlParams.get('name');
         
-        // Show input if no name in URL
-        if (!urlName) {
-            document.getElementById('name-input-container').classList.remove('hidden');
-        }
+        // No input field, so no need to show/hide container or read from it directly
 
         function startApp() {
             const splash = document.getElementById('splash');
             const main = document.getElementById('main-content');
             const greeting = document.getElementById('greeting');
-            const inputName = document.getElementById('user-name').value;
             
-            const finalName = urlName || inputName;
-            
+            const finalName = urlName; // Only rely on URL name
+
             if (finalName) {
                 greeting.innerHTML = `HAPPY VALENTINE'S<br>${finalName.toUpperCase()}!`;
+            } else {
+                greeting.innerHTML = `HAPPY<br>VALENTINE'S!`; // Default if no name in URL
             }
 
             splash.style.display = 'none';
